@@ -28,7 +28,7 @@ error_val   = zeros(m, 1);
 %               error_val(i) should give you the errors
 %               obtained after training on i examples.
 %
-% Note: You should evaluate the training error on the first i training
+% Note: You should evaluate=e training error on the first i training
 %       examples (i.e., X(1:i, :) and y(1:i)).
 %
 %       For the cross-validation error, you should instead evaluate on
@@ -53,7 +53,21 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+lambda_train = 0;
+lambda_val = 0;
 
+for i = 1:m
+    X_traning = X(1:i, :);
+    y_traning = y(1:i); 
+
+    theta = trainLinearReg(X_traning, y_traning, lambda);
+
+    error_train(i) = linearRegCostFunction(X_traning, y_traning, theta, lambda_train);
+    error_val(i) = linearRegCostFunction(Xval, yval, theta, lambda_val);
+
+  
+  
+endfor
 
 
 
